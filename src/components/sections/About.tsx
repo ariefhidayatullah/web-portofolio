@@ -7,7 +7,7 @@ import { fadeUp, staggerContainer } from "@/lib/utils";
 
 const stats = [
   { value: "2+", label: "Years of Experience" },
-  { value: "3", label: "Companies / Roles" },
+  { value: "1", label: "Companies" },
   { value: "Open", label: "to Opportunities" },
 ];
 
