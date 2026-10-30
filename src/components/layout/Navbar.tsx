@@ -83,9 +83,8 @@ export default function Navbar() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className={cn(
             "pointer-events-auto transition-all duration-300 relative",
-            isScrolled
-              ? "bg-white/90 backdrop-blur-md shadow-sm border border-zinc-200"
-              : "bg-white/60 backdrop-blur-sm border border-zinc-100"
+            "glass-nav",
+            isScrolled && "bg-[#0c1320]/80"
           )}
           style={{ borderRadius: "9999px" }}
         >
@@ -100,13 +99,13 @@ export default function Navbar() {
                   "relative px-4 py-1.5 text-sm font-medium rounded-full transition-colors duration-300",
                   activeSection === link.href.slice(1)
                     ? "text-white"
-                    : "text-zinc-600 hover:text-black"
+                    : "text-slate-400 hover:text-white"
                 )}
               >
                 {activeSection === link.href.slice(1) && (
                   <motion.span
                     layoutId="activePill"
-                    className="absolute inset-0 bg-[#111111] rounded-full"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-[#2c67ed] to-[#3c84f6] shadow-[0_0_20px_rgba(44,103,237,0.45)]"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                   />
                 )}
@@ -117,7 +116,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 text-zinc-700 hover:text-black transition-colors"
+            className="md:hidden p-2 text-slate-300 hover:text-white transition-colors"
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label={isMobileOpen ? "Close menu" : "Open menu"}
           >
@@ -135,7 +134,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl flex flex-col items-center justify-center"
+            className="fixed inset-0 z-40 bg-[#050510]/95 backdrop-blur-xl flex flex-col items-center justify-center"
           >
             <div className="space-y-6">
               {navLinks.map((link, i) => (
@@ -146,10 +145,10 @@ export default function Navbar() {
                   transition={{ delay: i * 0.1 }}
                   onClick={() => handleNavClick(link.href)}
                   className={cn(
-                    "block text-2xl font-semibold font-[family-name:var(--font-syne)] transition-colors",
+                    "block text-2xl font-semibold font-heading transition-colors",
                     activeSection === link.href.slice(1)
-                      ? "text-black"
-                      : "text-zinc-400 hover:text-black"
+                      ? "text-gradient"
+                      : "text-slate-500 hover:text-white"
                   )}
                 >
                   {link.label}

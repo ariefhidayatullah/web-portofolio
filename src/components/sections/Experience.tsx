@@ -35,7 +35,7 @@ export default function Experience() {
             whileInView={{ height: "100%" }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="absolute left-[15px] top-3 w-[2px] bg-zinc-200 origin-top"
+            className="absolute left-[15px] top-3 w-[2px] bg-gradient-to-b from-[#2c67ed] via-[#38bdf8]/40 to-transparent origin-top"
           />
 
           <div className="space-y-8">
@@ -49,8 +49,8 @@ export default function Experience() {
                 <div
                   className={`absolute left-[8px] top-3 w-[16px] h-[16px] rounded-full border-2 z-10 ${
                     exp.endDate === "Present"
-                      ? "bg-[#111111] border-[#111111]"
-                      : "bg-white border-zinc-300"
+                      ? "bg-[#2c67ed] border-[#60a5fa] shadow-[0_0_12px_#2c67ed]"
+                      : "bg-[#050510] border-slate-600"
                   }`}
                 />
 
@@ -58,7 +58,7 @@ export default function Experience() {
                   {/* Header */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                     <div>
-                      <h3 className="text-lg font-bold font-[family-name:var(--font-syne)] text-text-primary">
+                      <h3 className="text-lg font-bold font-heading text-text-primary">
                         {exp.title}
                       </h3>
                       <p className="text-sm text-text-secondary">
@@ -69,7 +69,7 @@ export default function Experience() {
                       <Badge variant={typeVariant[exp.type] || "zinc"}>
                         {exp.type}
                       </Badge>
-                      <span className="text-xs text-zinc-400">
+                      <span className="text-xs text-slate-500">
                         {exp.startDate} – {exp.endDate}
                       </span>
                     </div>
@@ -85,7 +85,7 @@ export default function Experience() {
                     {exp.responsibilities.map((resp, i) => (
                       <li
                         key={i}
-                        className="text-sm text-zinc-600 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-zinc-400"
+                        className="text-sm text-slate-300 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-blue-400"
                       >
                         {resp}
                       </li>
@@ -97,7 +97,7 @@ export default function Experience() {
                     {exp.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="bg-zinc-100 text-zinc-700 rounded-full px-2.5 py-0.5 text-xs font-medium"
+                        className="bg-white/5 border border-white/10 text-slate-300 rounded-full px-2.5 py-0.5 text-xs font-medium"
                       >
                         {tech}
                       </span>

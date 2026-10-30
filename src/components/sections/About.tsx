@@ -28,11 +28,9 @@ export default function About() {
   return (
     <section id="about" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left: Section Header */}
-          <div className="lg:col-span-4">
-            <SectionHeader label="About Me" title="Getting to know me" />
-          </div>
+        <SectionHeader label="About Me" title="Getting to know me" />
+
+        <div className="max-w-3xl mx-auto">
 
           {/* Right: Content */}
           <motion.div
@@ -40,7 +38,6 @@ export default function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="lg:col-span-8"
           >
             {/* Bio paragraphs */}
             <motion.div variants={fadeUp} className="space-y-4 mb-10">
@@ -67,9 +64,9 @@ export default function About() {
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="bg-zinc-50 border border-zinc-200 rounded-xl p-5 text-center"
+                  className="glass-card rounded-2xl p-5 text-center"
                 >
-                  <p className="text-2xl md:text-3xl font-bold font-[family-name:var(--font-syne)] text-text-primary">
+                  <p className="text-2xl md:text-3xl font-bold font-heading text-gradient">
                     {stat.value}
                   </p>
                   <p className="text-xs md:text-sm text-text-secondary mt-1">

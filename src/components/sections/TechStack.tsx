@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   SiNextdotjs,
   SiReact,
@@ -17,9 +16,7 @@ import {
   SiGit,
 } from "react-icons/si";
 import { techStack } from "@/data/techStack";
-import Card from "@/components/ui/Card";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { scaleUp, staggerContainer } from "@/lib/utils";
 import { type IconType } from "react-icons";
 
 const iconMap: Record<string, IconType> = {
@@ -39,13 +36,13 @@ const iconMap: Record<string, IconType> = {
 };
 
 const iconColorMap: Record<string, string> = {
-  nextjs: "#000000",
+  nextjs: "#ffffff",
   react: "#61DAFB",
   tailwindcss: "#06B6D4",
   bootstrap: "#7952B3",
   javascript: "#F7DF1E",
   laravel: "#FF2D20",
-  express: "#000000",
+  express: "#ffffff",
   nodedotjs: "#339933",
   php: "#777BB4",
   mysql: "#4479A1",
@@ -54,11 +51,15 @@ const iconColorMap: Record<string, string> = {
   git: "#F05032",
 };
 
+const allTech = techStack.flatMap((category) => category.items);
+const half = Math.ceil(allTech.length / 2);
+const rows = [allTech.slice(0, half), allTech.slice(half)];
+
 export default function TechStack() {
   return (
     <section
       id="tech-stack"
-      className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-zinc-50/50"
+      className="py-20 md:py-28 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-6xl mx-auto">
         <SectionHeader
@@ -66,44 +67,34 @@ export default function TechStack() {
           title="Tools & technologies I work with"
         />
 
-        <div className="space-y-10">
-          {techStack.map((category) => (
-            <motion.div
-              key={category.title}
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-            >
-              <h3 className="text-base font-semibold font-[family-name:var(--font-syne)] text-text-primary mb-4 flex items-center gap-2">
-                <span>{category.emoji}</span>
-                <span>{category.title}</span>
-              </h3>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                {category.items.map((tech) => {
+        <div className="space-y-4 marquee-fade">
+          {rows.map((row, i) => (
+            <div key={i} className="marquee overflow-hidden">
+              {/* Row repeated 4x (two identical halves) so it is wider than any screen; the track slides by -50% so the loop is seamless. */}
+              <div className={`marquee-track flex w-max gap-4 ${i % 2 ? "marquee-reverse" : ""}`}>
+                {[...row, ...row, ...row, ...row].map((tech, j) => {
                   const Icon = iconMap[tech.icon];
-                  const color = iconColorMap[tech.icon] || "#111";
-
                   return (
-                    <motion.div key={tech.name} variants={scaleUp}>
-                      <Card className="flex flex-col items-center justify-center py-5 px-3 text-center group bg-white">
-                        {Icon && (
-                          <Icon
-                            size={32}
-                            color={color}
-                            className="mb-2.5 group-hover:scale-110 transition-transform duration-300"
-                          />
-                        )}
-                        <span className="text-sm font-medium text-zinc-600 group-hover:text-black transition-colors">
-                          {tech.name}
-                        </span>
-                      </Card>
-                    </motion.div>
+                    <div
+                      key={j}
+                      aria-hidden={j >= row.length}
+                      className="glass-card rounded-2xl flex items-center gap-3 px-6 py-4 group hover:border-blue-500/30 transition-colors"
+                    >
+                      {Icon && (
+                        <Icon
+                          size={28}
+                          color={iconColorMap[tech.icon] || "#fff"}
+                          className="group-hover:scale-110 transition-transform duration-300"
+                        />
+                      )}
+                      <span className="text-sm font-medium text-slate-300 group-hover:text-white whitespace-nowrap transition-colors">
+                        {tech.name}
+                      </span>
+                    </div>
                   );
                 })}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

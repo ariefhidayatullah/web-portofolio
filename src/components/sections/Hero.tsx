@@ -1,12 +1,24 @@
 "use client";
 
-import Image from "next/image";
+// Lanyard disabled for now, replaced by the DitherVeil portrait. Uncomment to bring it back.
+// import { useSyncExternalStore } from "react";
+// import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDown, MapPin, CircleCheck } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import TypewriterText from "@/components/ui/TypewriterText";
 import Badge from "@/components/ui/Badge";
+import DitherVeil from "@/components/ui/DitherVeil";
 import { fadeUpHero, slideInRight } from "@/lib/utils";
+
+// const Lanyard = dynamic(() => import("@/components/ui/Lanyard"), { ssr: false });
+//
+// const desktopQuery = "(min-width: 1024px)";
+// const subscribeDesktop = (cb: () => void) => {
+//   const mq = window.matchMedia(desktopQuery);
+//   mq.addEventListener("change", cb);
+//   return () => mq.removeEventListener("change", cb);
+// };
 
 const socialLinks = [
   {
@@ -27,6 +39,13 @@ const socialLinks = [
 ];
 
 export default function Hero() {
+  // Server and first client render: false, so three.js never loads on mobile.
+  // const isDesktop = useSyncExternalStore(
+  //   subscribeDesktop,
+  //   () => window.matchMedia(desktopQuery).matches,
+  //   () => false
+  // );
+
   return (
     <section
       id="home"
@@ -55,16 +74,16 @@ export default function Hero() {
             animate="visible"
             custom={1}
           >
-            <p className="text-lg md:text-xl text-zinc-500 font-[family-name:var(--font-dm-sans)] mb-2">
+            <p className="text-lg md:text-xl text-slate-400 mb-2">
               Hi, I&apos;m
             </p>
             <h1
-              className="font-[family-name:var(--font-syne)] font-bold text-text-primary leading-[1.1] mb-4"
-              style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}
+              className="font-heading font-extrabold tracking-tight leading-[1.05] mb-4"
+              style={{ fontSize: "clamp(2.8rem, 6vw, 4.8rem)" }}
             >
-              Mohammad Arief
+              <span className="text-gradient">Mohammad Arief</span>
               <br />
-              Hidayatullah
+              <span className="text-white">Hidayatullah</span>
             </h1>
           </motion.div>
 
@@ -77,7 +96,7 @@ export default function Hero() {
             className="mb-6"
           >
             <p
-              className="font-[family-name:var(--font-syne)] font-semibold text-text-primary"
+              className="font-mono font-medium text-blue-300"
               style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)" }}
             >
               <TypewriterText text="Full-Stack Developer" delay={1000} />
@@ -105,11 +124,11 @@ export default function Hero() {
             custom={4}
             className="flex flex-wrap items-center gap-4 mb-8"
           >
-            <span className="flex items-center gap-1.5 text-sm text-zinc-500">
+            <span className="flex items-center gap-1.5 text-sm text-slate-400">
               <MapPin size={14} />
               Malang, Indonesia
             </span>
-            <span className="flex items-center gap-1.5 text-sm text-green-600">
+            <span className="flex items-center gap-1.5 text-sm text-emerald-400">
               <CircleCheck size={14} />
               Available Now
             </span>
@@ -125,14 +144,14 @@ export default function Hero() {
           >
             <a
               href="mailto:mohammadariefhidayatullah@gmail.com"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#111111] text-white rounded-lg text-sm font-medium hover:bg-zinc-800 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#2c67ed] to-[#3c84f6] shadow-[0_0_24px_rgba(44,103,237,0.4)] hover:shadow-[0_0_32px_rgba(44,103,237,0.6)] hover:-translate-y-0.5 transition-all"
             >
               <ArrowRight size={16} />
               Hire Me
             </a>
             <a
               href="/resume.pdf"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black border border-zinc-300 rounded-lg text-sm font-medium hover:bg-zinc-50 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-slate-200 bg-white/5 border border-white/10 hover:bg-white/10 hover:-translate-y-0.5 transition-all"
             >
               <ArrowDown size={16} />
               Download CV
@@ -147,7 +166,7 @@ export default function Hero() {
             custom={6}
             className="flex items-center gap-4"
           >
-            <span className="text-xs text-zinc-400 uppercase tracking-wider font-medium">
+            <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">
               Follow me:
             </span>
             {socialLinks.map((link) => (
@@ -156,7 +175,7 @@ export default function Hero() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-zinc-400 hover:text-black hover:scale-110 transition-all duration-200"
+                className="w-10 h-10 grid place-items-center rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:border-blue-500/40 hover:scale-110 transition-all duration-200"
                 aria-label={link.label}
               >
                 <link.icon size={18} />
@@ -165,36 +184,31 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right: Avatar / Illustration */}
+
+        {/* Right: dithered portrait, cursor reveals the full-colour photo */}
         <motion.div
           variants={slideInRight}
           initial="hidden"
           animate="visible"
-          className="hidden lg:flex justify-center items-center"
+          className="hidden lg:block relative mx-auto w-full max-w-sm"
         >
-          <div className="relative">
-            <div className="w-72 md:w-80 xl:w-96 rounded-3xl bg-zinc-100 border border-zinc-200 shadow-lg overflow-hidden">
-              <Image
-                src="/avatar.jpg"
-                alt="Mohammad Arief Hidayatullah"
-                width={914}
-                height={1280}
-                priority
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            {/* Decorative dots */}
-            <div className="absolute -bottom-4 -right-4 w-20 h-20 grid grid-cols-4 gap-1.5 opacity-30">
-              {Array.from({ length: 16 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="w-2 h-2 rounded-full bg-zinc-400"
-                />
-              ))}
-            </div>
-          </div>
+          <div className="absolute inset-[15%] rounded-full bg-[#2c67ed]/30 blur-3xl" />
+          <DitherVeil
+            src="/avatar-nobg.png"
+            inkColor="#050510"
+            paperColor="#60a5fa"
+            revealRadius={160}
+            className="relative aspect-[914/1280] w-full"
+          />
         </motion.div>
       </div>
+
+      {/* Right: draggable 3D ID card, desktop only */}
+      {/* {isDesktop && (
+        <div className="absolute top-0 right-0 w-1/2 h-full">
+          <Lanyard />
+        </div>
+      )} */}
     </section>
   );
 }

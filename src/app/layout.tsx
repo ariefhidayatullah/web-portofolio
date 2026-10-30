@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Syne, DM_Sans } from "next/font/google";
-import ParticleBackground from "@/components/ui/ParticleBackground";
+import { Space_Grotesk, Inter } from "next/font/google";
+import MeteorBackground from "@/components/ui/MeteorBackground";
 import "./globals.css";
 
-const syne = Syne({
+const display = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-  variable: "--font-syne",
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-dm-sans",
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -46,10 +46,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${dmSans.variable} antialiased`}
+      className={`${display.variable} ${inter.variable} antialiased`}
     >
       <body>
-        <ParticleBackground />
+        <MeteorBackground />
         <div className="relative z-0">
           {children}
         </div>

@@ -13,24 +13,24 @@ const contacts = [
     value: "mohammadariefhidayatullah@gmail.com",
     href: "mailto:mohammadariefhidayatullah@gmail.com",
     icon: Mail,
-    iconBg: "bg-blue-50",
-    iconColor: "text-blue-600",
+    iconBg: "bg-blue-500/10 border border-blue-500/25",
+    iconColor: "text-blue-300",
   },
   {
     label: "LinkedIn",
     value: "mohammadariefhidayatullah",
     href: "https://linkedin.com/in/mohammadariefhidayatullah",
     icon: FaLinkedin,
-    iconBg: "bg-sky-50",
-    iconColor: "text-sky-600",
+    iconBg: "bg-sky-500/10 border border-sky-500/25",
+    iconColor: "text-sky-300",
   },
   {
     label: "Instagram",
     value: "@ariefhidayatullah._",
     href: "https://instagram.com/ariefhidayatullah._",
     icon: FaInstagram,
-    iconBg: "bg-pink-50",
-    iconColor: "text-pink-600",
+    iconBg: "bg-pink-500/10 border border-pink-500/25",
+    iconColor: "text-pink-300",
   },
 ];
 
@@ -38,7 +38,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-zinc-50/50"
+      className="py-20 md:py-28 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
