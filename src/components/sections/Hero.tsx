@@ -137,7 +137,7 @@ export default function Hero() {
               <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
               <span className="w-3 h-3 rounded-full bg-[#28c840]" />
               <span className="ml-2 font-mono text-xs text-slate-500">
-                arief@malang: ~
+                ~/portfolio
               </span>
             </div>
             <div className="p-5 font-mono text-sm leading-relaxed space-y-3">
