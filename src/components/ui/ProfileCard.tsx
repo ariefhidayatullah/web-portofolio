@@ -194,7 +194,9 @@ const TILE =
 const LAYER = 'pointer-events-none absolute inset-0 rounded-[inherit]';
 const HOLO = `${LAYER} [mix-blend-mode:var(--pc-blend)]`;
 const HOLO_LAYER = 'absolute inset-0';
-const PHOTO = 'pointer-events-none absolute select-none object-cover object-bottom';
+// Local change vs React Bits: max-w-none, else Tailwind preflight (img max-width:100%) cancels the
+// parallax overscan width and leaves a strip of backdrop visible on the right edge.
+const PHOTO = 'pointer-events-none absolute select-none object-cover object-bottom max-w-none';
 const INFO = 'absolute bottom-[18px] left-5 right-5 text-white';
 const NAME = 'm-0 text-[20px] font-semibold leading-[1.25] tracking-[-0.01em] text-[inherit]';
 const TITLE = 'mx-0 mb-0 mt-1 text-[14px] leading-[1.45] text-white/78';
