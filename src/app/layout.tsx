@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import MeteorBackground from "@/components/ui/MeteorBackground";
 import "./globals.css";
@@ -36,6 +36,12 @@ export const metadata: Metadata = {
       "Full-Stack Developer specialized in building scalable web applications.",
     type: "website",
   },
+};
+
+// cover: Safari iOS draws the page behind the status bar from scroll 0,
+// instead of a flat strip. Top offsets add env(safe-area-inset-top) to compensate.
+export const viewport: Viewport = {
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

@@ -67,7 +67,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-20"
+      className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-[calc(5rem+env(safe-area-inset-top))]"
     >
       <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left: Text Content */}
