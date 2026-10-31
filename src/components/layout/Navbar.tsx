@@ -85,7 +85,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="fixed top-[calc(1rem+env(safe-area-inset-top))] left-0 w-full flex justify-center z-[50] pointer-events-none">
+      <div className="fixed top-4 left-0 w-full flex justify-center z-[50] pointer-events-none">
         <motion.nav
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
