@@ -243,8 +243,8 @@ export default function Hero() {
         >
           <div className="absolute inset-[15%] rounded-full bg-[#2c67ed]/30 blur-3xl" />
           <ProfileCard
-            avatarUrl="/avatar-nobg.png"
-            miniAvatarUrl="/avatar-nobg.png"
+            avatarUrl="/profile-card.jpg"
+            miniAvatarUrl="/profile-mini.jpg"
             name="Arief Hidayatullah"
             title="Full-Stack Developer"
             handle="ariefhidayatullah"
