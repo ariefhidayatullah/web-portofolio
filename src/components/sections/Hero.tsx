@@ -120,12 +120,12 @@ export default function Hero() {
             <p className="text-lg md:text-xl text-slate-400 mb-2">
               Hi, I&apos;m
             </p>
-            {/* Desktop: TechText canvas (cursor effect). The h1 stays for SEO/screen readers, visually hidden on lg. */}
-            <div aria-hidden className="hidden lg:block mb-4">
+            {/* TechText canvas: follows cursor/touch, sweeps by itself when idle. The h1 below is for SEO/screen readers only. */}
+            <div aria-hidden className="mb-4">
               {/* Height on the wrapper (TechText's own h-full wins over a className height).
                   -left-[5%] cancels TechText's built-in 5% side margin so the name lines up with "Hi, I'm". */}
               {nameLines.map((line) => (
-                <div key={line} className="relative -left-[5%] h-24">
+                <div key={line} className="relative -left-[5%] h-16 sm:h-20 lg:h-24">
                   <TechText
                     text={line}
                     color="#ffffff"
@@ -139,14 +139,7 @@ export default function Hero() {
                 </div>
               ))}
             </div>
-            <h1
-              className="lg:sr-only font-heading font-extrabold tracking-tight leading-[1.05] mb-4"
-              style={{ fontSize: "clamp(2.8rem, 6vw, 4.8rem)" }}
-            >
-              <span className="text-gradient">Mohammad Arief</span>
-              <br />
-              <span className="text-white">Hidayatullah</span>
-            </h1>
+            <h1 className="sr-only">Mohammad Arief Hidayatullah</h1>
           </motion.div>
 
           {/* Terminal window: role + bio */}
