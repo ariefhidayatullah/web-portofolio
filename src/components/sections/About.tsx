@@ -15,13 +15,10 @@ const stats = [
 const coreSkills = [
   "PHP",
   "Laravel",
-  "Node.js",
-  "Express.js",
-  "React",
-  "Next.js",
+  "CodeIgniter",
   "MySQL",
-  "MongoDB",
-  "Docker",
+  "RabbitMQ",
+  "JavaScript",
   "Git",
 ];
 

@@ -11,6 +11,16 @@ export interface TechCategory {
 
 export const techStack: TechCategory[] = [
   {
+    title: "Back-end",
+    emoji: "⚙️",
+    items: [
+      { name: "PHP", icon: "php" },
+      { name: "Laravel", icon: "laravel" },
+      { name: "CodeIgniter", icon: "codeigniter" },
+      { name: "RabbitMQ", icon: "rabbitmq" },
+    ],
+  },
+  {
     title: "Front-end",
     emoji: "🎨",
     items: [
@@ -22,29 +32,20 @@ export const techStack: TechCategory[] = [
     ],
   },
   {
-    title: "Back-end",
-    emoji: "⚙️",
-    items: [
-      { name: "Laravel", icon: "laravel" },
-      { name: "Express.js", icon: "express" },
-      { name: "Node.js", icon: "nodedotjs" },
-      { name: "PHP", icon: "php" },
-    ],
-  },
-  {
-    title: "Database",
+    title: "Data & Tools",
     emoji: "🗄️",
     items: [
       { name: "MySQL", icon: "mysql" },
-      { name: "MongoDB", icon: "mongodb" },
+      { name: "Git", icon: "git" },
     ],
   },
   {
-    title: "DevOps",
-    emoji: "☁️",
+    title: "AI Tools",
+    emoji: "🤖",
     items: [
-      { name: "Docker", icon: "docker" },
-      { name: "Git", icon: "git" },
+      { name: "Claude", icon: "claude" },
+      { name: "OpenAI Codex", icon: "openai" },
+      { name: "DeepSeek", icon: "deepseek" },
     ],
   },
 ];

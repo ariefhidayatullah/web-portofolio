@@ -1,8 +1,5 @@
 "use client";
 
-// Lanyard disabled for now, replaced by the DitherVeil portrait. Uncomment to bring it back.
-// (useSyncExternalStore is already imported below for the clock)
-// import dynamic from "next/dynamic";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useSyncExternalStore } from "react";
@@ -15,15 +12,6 @@ import Badge from "@/components/ui/Badge";
 import ProfileCard from "@/components/ui/ProfileCard";
 import TechText from "@/components/ui/TechText";
 import { fadeUpHero, slideInRight } from "@/lib/utils";
-
-// const Lanyard = dynamic(() => import("@/components/ui/Lanyard"), { ssr: false });
-//
-// const desktopQuery = "(min-width: 1024px)";
-// const subscribeDesktop = (cb: () => void) => {
-//   const mq = window.matchMedia(desktopQuery);
-//   mq.addEventListener("change", cb);
-//   return () => mq.removeEventListener("change", cb);
-// };
 
 const socialLinks = [
   {
@@ -63,13 +51,6 @@ function LocalTime() {
 }
 
 export default function Hero() {
-  // Server and first client render: false, so three.js never loads on mobile.
-  // const isDesktop = useSyncExternalStore(
-  //   subscribeDesktop,
-  //   () => window.matchMedia(desktopQuery).matches,
-  //   () => false
-  // );
-
   return (
     <section
       id="home"
@@ -303,12 +284,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Right: draggable 3D ID card, desktop only */}
-      {/* {isDesktop && (
-        <div className="absolute top-0 right-0 w-1/2 h-full">
-          <Lanyard />
-        </div>
-      )} */}
     </section>
   );
 }

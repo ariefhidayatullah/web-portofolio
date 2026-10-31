@@ -27,7 +27,7 @@ export const experiences: Experience[] = [
       "Keep RabbitMQ background workers reliable, so jobs don't fail silently.",
       "Upgraded three PHP codebases to PHP 8.4 and added JWT authentication to the mobile app API.",
     ],
-    technologies: ["PHP", "Laravel", "CodeIgniter", "MySQL", "RabbitMQ", "JavaScript", "Docker"],
+    technologies: ["PHP", "Laravel", "CodeIgniter", "MySQL", "RabbitMQ", "JavaScript"],
   },
   {
     id: "sekawan-lead",
