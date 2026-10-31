@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Badge from "@/components/ui/Badge";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import { fadeUp, staggerContainer } from "@/lib/utils";
 
 const stats = [
@@ -62,9 +63,11 @@ export default function About() {
               className="grid grid-cols-3 gap-4 mb-10"
             >
               {stats.map((stat) => (
-                <div
+                // Not ui/Card: its forced p-6! would override p-5 here.
+                <SpotlightCard
                   key={stat.label}
-                  className="glass-card rounded-2xl p-5 text-center"
+                  spotlightColor="#60a5fa"
+                  className="glass-card rounded-2xl! p-5! text-center"
                 >
                   <p className="text-2xl md:text-3xl font-bold font-heading text-gradient">
                     {stat.value}
@@ -72,7 +75,7 @@ export default function About() {
                   <p className="text-xs md:text-sm text-text-secondary mt-1">
                     {stat.label}
                   </p>
-                </div>
+                </SpotlightCard>
               ))}
             </motion.div>
 
