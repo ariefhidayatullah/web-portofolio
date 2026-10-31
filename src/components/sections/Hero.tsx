@@ -10,7 +10,9 @@ import { ArrowRight, MapPin, Clock } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import TypewriterText from "@/components/ui/TypewriterText";
 import Badge from "@/components/ui/Badge";
-import DitherVeil from "@/components/ui/DitherVeil";
+// DitherVeil replaced by ProfileCard. Uncomment (and the block below) to bring it back.
+// import DitherVeil from "@/components/ui/DitherVeil";
+import ProfileCard from "@/components/ui/ProfileCard";
 import { fadeUpHero, slideInRight } from "@/lib/utils";
 
 // const Lanyard = dynamic(() => import("@/components/ui/Lanyard"), { ssr: false });
@@ -232,7 +234,7 @@ export default function Hero() {
         </div>
 
 
-        {/* Right: dithered portrait, cursor reveals the full-colour photo */}
+        {/* Right: holographic profile card (React Bits ProfileCard), desktop only */}
         <motion.div
           variants={slideInRight}
           initial="hidden"
@@ -240,13 +242,26 @@ export default function Hero() {
           className="hidden lg:block relative mx-auto w-full max-w-sm"
         >
           <div className="absolute inset-[15%] rounded-full bg-[#2c67ed]/30 blur-3xl" />
-          <DitherVeil
+          <ProfileCard
+            avatarUrl="/avatar-nobg.png"
+            miniAvatarUrl="/avatar-nobg.png"
+            name="Arief Hidayatullah"
+            title="Full-Stack Developer"
+            handle="ariefhidayatullah"
+            status="Available"
+            contactText="Contact"
+            backdropColor="#2c67ed"
+            onContactClick={() => {
+              window.location.href = "mailto:mohammadariefhidayatullah@gmail.com";
+            }}
+          />
+          {/* <DitherVeil
             src="/avatar-nobg.png"
             inkColor="#050510"
             paperColor="#60a5fa"
             revealRadius={160}
             className="relative aspect-[914/1280] w-full"
-          />
+          /> */}
         </motion.div>
       </div>
 
