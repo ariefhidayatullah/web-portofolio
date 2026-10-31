@@ -88,10 +88,10 @@ export default function Hero() {
             className="lg:hidden w-32 h-32 mb-6 rounded-full overflow-hidden bg-gradient-to-b from-[#2c67ed]/40 to-[#050510] border border-white/10 shadow-[0_0_32px_rgba(44,103,237,0.35)]"
           >
             <Image
-              src="/avatar-nobg.png"
+              src="/profile-round.jpg"
               alt="Mohammad Arief Hidayatullah"
-              width={914}
-              height={1280}
+              width={256}
+              height={256}
               sizes="128px"
               className="w-full h-auto"
             />
