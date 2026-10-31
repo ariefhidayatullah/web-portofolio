@@ -3,6 +3,7 @@
 // Lanyard disabled for now, replaced by the DitherVeil portrait. Uncomment to bring it back.
 // (useSyncExternalStore is already imported below for the clock)
 // import dynamic from "next/dynamic";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useSyncExternalStore } from "react";
 import { ArrowRight, MapPin, Clock } from "lucide-react";
@@ -71,6 +72,25 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left: Text Content */}
         <div>
+          {/* Mobile photo: DitherVeil on the right is desktop only.
+              Default lazy loading, so desktop (display:none) never fetches it. */}
+          <motion.div
+            variants={fadeUpHero}
+            initial="hidden"
+            animate="visible"
+            custom={0}
+            className="lg:hidden w-32 h-32 mb-6 rounded-full overflow-hidden bg-gradient-to-b from-[#2c67ed]/40 to-[#050510] border border-white/10 shadow-[0_0_32px_rgba(44,103,237,0.35)]"
+          >
+            <Image
+              src="/avatar-nobg.png"
+              alt="Mohammad Arief Hidayatullah"
+              width={914}
+              height={1280}
+              sizes="128px"
+              className="w-full h-auto"
+            />
+          </motion.div>
+
           {/* Availability badge */}
           <motion.div
             variants={fadeUpHero}
