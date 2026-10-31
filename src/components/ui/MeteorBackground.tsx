@@ -10,12 +10,9 @@ const meteors = Array.from({ length: 14 }, (_, i) => ({
 }));
 
 export default function MeteorBackground() {
-  // max-lg: extend under Safari iOS status/address bars, else the glow ends in a hard edge there.
+  // max-lg: extend under Safari iOS status/address bars so the dot grid also covers the area under them.
   return (
     <div aria-hidden className="fixed inset-0 max-lg:-top-[100px] max-lg:-bottom-[100px] -z-10 overflow-hidden pointer-events-none">
-      <span className="ambient-orb w-[480px] h-[480px] bg-[#2c67ed] -top-40 -left-32" />
-      <span className="ambient-orb w-[420px] h-[420px] bg-[#38bdf8] top-1/2 -right-40 [animation-delay:-6s]" />
-      <span className="ambient-orb w-[360px] h-[360px] bg-[#818cf8] -bottom-32 left-1/3 [animation-delay:-12s]" />
       <DotGrid dotSize={3} gap={22} baseColor="#1e2a44" activeColor="#60a5fa" proximity={120} fade={0.6} />
       {/* {meteors.map((m, i) => (
         <span

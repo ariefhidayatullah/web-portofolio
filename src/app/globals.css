@@ -77,15 +77,6 @@ h1, h2, h3, h4, h5, h6 {
   background: #334155;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.cursor-blink {
-  animation: blink 1s step-end infinite;
-}
-
 main, section, nav, footer {
   position: relative;
   z-index: 1;
@@ -133,18 +124,6 @@ main, section, nav, footer {
   2% { opacity: 0.9; }
   8% { opacity: 0.75; }
   12%, 100% { opacity: 0; transform: translate(75vw, 75vw) rotate(45deg); }
-}
-
-.ambient-orb {
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(90px);
-  opacity: 0.35;
-  animation: orb-drift 18s ease-in-out infinite alternate;
-}
-
-@keyframes orb-drift {
-  to { transform: translate(40px, -30px) scale(1.1); }
 }
 
 /* Portrait orbit rings (hero) */
@@ -203,5 +182,5 @@ html.recruiter main,
 html.recruiter footer { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .meteor, .ambient-orb, .orbit, .marquee-track { animation: none; }
+  .meteor, .orbit, .marquee-track { animation: none; }
 }

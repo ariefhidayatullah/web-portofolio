@@ -8,11 +8,12 @@ import { motion } from "framer-motion";
 import { useSyncExternalStore } from "react";
 import { ArrowRight, MapPin, Clock } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import TypewriterText from "@/components/ui/TypewriterText";
+import TextType from "@/components/ui/TextType";
 import Badge from "@/components/ui/Badge";
 // DitherVeil replaced by ProfileCard. Uncomment (and the block below) to bring it back.
 // import DitherVeil from "@/components/ui/DitherVeil";
 import ProfileCard from "@/components/ui/ProfileCard";
+import TechText from "@/components/ui/TechText";
 import { fadeUpHero, slideInRight } from "@/lib/utils";
 
 // const Lanyard = dynamic(() => import("@/components/ui/Lanyard"), { ssr: false });
@@ -41,6 +42,9 @@ const socialLinks = [
     icon: FaInstagram,
   },
 ];
+
+// TechText takes one line per instance.
+const nameLines = ["Mohammad", "Arief", "Hidayatullah"];
 
 const subscribeClock = (cb: () => void) => {
   const id = setInterval(cb, 10_000);
@@ -116,8 +120,27 @@ export default function Hero() {
             <p className="text-lg md:text-xl text-slate-400 mb-2">
               Hi, I&apos;m
             </p>
+            {/* Desktop: TechText canvas (cursor effect). The h1 stays for SEO/screen readers, visually hidden on lg. */}
+            <div aria-hidden className="hidden lg:block mb-4">
+              {/* Height on the wrapper (TechText's own h-full wins over a className height).
+                  -left-[5%] cancels TechText's built-in 5% side margin so the name lines up with "Hi, I'm". */}
+              {nameLines.map((line) => (
+                <div key={line} className="relative -left-[5%] h-24">
+                  <TechText
+                    text={line}
+                    color="#ffffff"
+                    accentColor="#60a5fa"
+                    align="left"
+                    fontSize={77}
+                    fontWeight={700}
+                    letterSpacing={-0.025}
+                    className="font-heading"
+                  />
+                </div>
+              ))}
+            </div>
             <h1
-              className="font-heading font-extrabold tracking-tight leading-[1.05] mb-4"
+              className="lg:sr-only font-heading font-extrabold tracking-tight leading-[1.05] mb-4"
               style={{ fontSize: "clamp(2.8rem, 6vw, 4.8rem)" }}
             >
               <span className="text-gradient">Mohammad Arief</span>
@@ -147,8 +170,15 @@ export default function Hero() {
                 <p className="text-slate-500">
                   <span className="text-emerald-400">$</span> whoami
                 </p>
-                <p className="text-blue-300 text-lg font-medium">
-                  <TypewriterText text="Full-Stack Developer" delay={1000} />
+                <p className="text-white text-lg font-medium">
+                  <TextType
+                    as="span"
+                    text="Full-Stack Developer"
+                    initialDelay={1000}
+                    typingSpeed={80}
+                    loop={false}
+                    showCursor={false}
+                  />
                 </p>
               </div>
               <div>
@@ -159,6 +189,20 @@ export default function Hero() {
                   I build efficient, scalable, and well-structured web
                   applications. With 3+ years of experience in web development,
                   I bring clean code and thoughtful engineering to every project.
+                </p>
+              </div>
+              {/* Topics being learned, not claimed skills. Only this last prompt shows a cursor, like a real terminal. */}
+              <div>
+                <p className="text-slate-500">
+                  <span className="text-emerald-400">$</span> cat now-learning.txt
+                </p>
+                <p className="text-white font-medium">
+                  <TextType
+                    as="span"
+                    text={["AI Engineering", "RAG", "AI Agents"]}
+                    initialDelay={2800}
+                    typingSpeed={80}
+                  />
                 </p>
               </div>
             </div>
