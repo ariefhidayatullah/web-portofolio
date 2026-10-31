@@ -17,6 +17,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isRecruiter, setIsRecruiter] = useState(false);
   const isClickingRef = useRef(false);
 
   useEffect(() => {
@@ -58,6 +59,14 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [isMobileOpen]);
 
+  const toggleRecruiter = () => {
+    const next = !isRecruiter;
+    setIsRecruiter(next);
+    setIsMobileOpen(false);
+    document.documentElement.classList.toggle("recruiter", next);
+    window.scrollTo({ top: 0 });
+  };
+
   const handleNavClick = (href: string) => {
     setIsMobileOpen(false);
 
@@ -90,8 +99,8 @@ export default function Navbar() {
         >
           <div className="px-2 py-1.5 flex items-center gap-1">
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
+          <div className={cn("hidden items-center gap-1", !isRecruiter && "md:flex")}>
+            {navLinks.map((link, i) => (
               <button
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
@@ -109,14 +118,34 @@ export default function Navbar() {
                     transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                   />
                 )}
-                <span className="relative z-10">{link.label}</span>
+                <span className="relative z-10">
+                  <span className="font-mono text-xs opacity-60 mr-1.5">0{i + 1}</span>
+                  {link.label}
+                </span>
               </button>
             ))}
           </div>
 
+          {/* Recruiter mode toggle */}
+          <button
+            onClick={toggleRecruiter}
+            aria-pressed={isRecruiter}
+            className={cn(
+              "px-4 py-1.5 font-mono text-xs rounded-full border transition-colors",
+              isRecruiter
+                ? "border-emerald-400/50 bg-emerald-400/10 text-emerald-300"
+                : "border-white/10 text-slate-400 hover:text-white"
+            )}
+          >
+            {isRecruiter ? "← full site" : "recruiter mode"}
+          </button>
+
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 text-slate-300 hover:text-white transition-colors"
+            className={cn(
+              "p-2 text-slate-300 hover:text-white transition-colors",
+              isRecruiter ? "hidden" : "md:hidden"
+            )}
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label={isMobileOpen ? "Close menu" : "Open menu"}
           >
@@ -151,6 +180,7 @@ export default function Navbar() {
                       : "text-slate-500 hover:text-white"
                   )}
                 >
+                  <span className="font-mono text-sm opacity-60 mr-3">0{i + 1}</span>
                   {link.label}
                 </motion.button>
               ))}

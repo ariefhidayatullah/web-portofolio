@@ -189,6 +189,12 @@ main, section, nav, footer {
   to { transform: translateX(calc(-50% - 0.5rem)); }
 }
 
+/* Recruiter mode: html.recruiter swaps the full site for the one-page CV */
+.recruiter-view { display: none; }
+html.recruiter .recruiter-view { display: block; }
+html.recruiter main,
+html.recruiter footer { display: none; }
+
 @media (prefers-reduced-motion: reduce) {
   .meteor, .ambient-orb, .orbit, .marquee-track { animation: none; }
 }

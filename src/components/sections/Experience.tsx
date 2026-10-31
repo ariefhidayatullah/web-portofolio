@@ -5,7 +5,15 @@ import { experiences } from "@/data/experience";
 import Card from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { fadeUp, slideInLeft, staggerContainer } from "@/lib/utils";
+import { slideInLeft, staggerContainer } from "@/lib/utils";
+
+// Stable fake commit hash per entry, purely decorative.
+const shortHash = (id: string) =>
+  [...id]
+    .reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7)
+    .toString(16)
+    .padStart(7, "0")
+    .slice(0, 7);
 
 const typeVariant: Record<string, "dark" | "blue" | "zinc"> = {
   "Full-time": "dark",
@@ -39,7 +47,7 @@ export default function Experience() {
           />
 
           <div className="space-y-8">
-            {experiences.map((exp, index) => (
+            {experiences.map((exp) => (
               <motion.div
                 key={exp.id}
                 variants={slideInLeft}
@@ -55,6 +63,14 @@ export default function Experience() {
                 />
 
                 <Card hover={false} className="relative">
+                  {/* git log style commit line */}
+                  <p className="font-mono text-xs mb-2">
+                    <span className="text-amber-400">commit {shortHash(exp.id)}</span>
+                    {exp.endDate === "Present" && (
+                      <span className="text-sky-400"> (HEAD -&gt; main)</span>
+                    )}
+                  </p>
+
                   {/* Header */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                     <div>
@@ -69,7 +85,7 @@ export default function Experience() {
                       <Badge variant={typeVariant[exp.type] || "zinc"}>
                         {exp.type}
                       </Badge>
-                      <span className="text-xs text-slate-500">
+                      <span className="font-mono text-xs text-slate-500">
                         {exp.startDate} – {exp.endDate}
                       </span>
                     </div>
@@ -85,7 +101,7 @@ export default function Experience() {
                     {exp.responsibilities.map((resp, i) => (
                       <li
                         key={i}
-                        className="text-sm text-slate-300 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-blue-400"
+                        className="text-sm text-slate-300 pl-4 relative before:content-['+'] before:absolute before:left-0 before:font-mono before:text-emerald-400"
                       >
                         {resp}
                       </li>

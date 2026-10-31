@@ -5,6 +5,7 @@ import TechStack from "@/components/sections/TechStack";
 import Experience from "@/components/sections/Experience";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
+import RecruiterView from "@/components/sections/RecruiterView";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <Experience />
         <Contact />
       </main>
+      <RecruiterView />
       <Footer />
     </>
   );

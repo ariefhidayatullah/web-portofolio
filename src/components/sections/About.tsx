@@ -6,8 +6,8 @@ import Badge from "@/components/ui/Badge";
 import { fadeUp, staggerContainer } from "@/lib/utils";
 
 const stats = [
-  { value: "2+", label: "Years of Experience" },
-  { value: "1", label: "Companies" },
+  { value: "3+", label: "Years of Experience" },
+  { value: "1", label: "Company" },
   { value: "Open", label: "to Opportunities" },
 ];
 

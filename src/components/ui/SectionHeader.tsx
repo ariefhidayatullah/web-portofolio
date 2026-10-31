@@ -17,8 +17,11 @@ export default function SectionHeader({ label, title }: SectionHeaderProps) {
       viewport={{ once: true, margin: "-100px" }}
       className="mb-12 md:mb-16 text-center"
     >
-      <p className="text-sm font-medium text-accent-light uppercase tracking-[0.2em] mb-3">
-        {label}
+      <p className="font-mono text-sm text-slate-500 mb-3">
+        <span className="text-emerald-400">$</span> cd{" "}
+        <span className="text-accent-light">
+          ~/{label.toLowerCase().replace(/\s+/g, "-")}
+        </span>
       </p>
       <h2
         className="font-bold font-heading leading-[1.05] tracking-tight text-text-primary"
