@@ -16,9 +16,6 @@ export default function MeteorBackground() {
       <span className="ambient-orb w-[480px] h-[480px] bg-[#2c67ed] -top-40 -left-32" />
       <span className="ambient-orb w-[420px] h-[420px] bg-[#38bdf8] top-1/2 -right-40 [animation-delay:-6s]" />
       <span className="ambient-orb w-[360px] h-[360px] bg-[#818cf8] -bottom-32 left-1/3 [animation-delay:-12s]" />
-      {/* Safari's top bar is flat body colour (#0d1b45, globals.css) and can't show the glow,
-          so fade the glow into that colour at the top edge. top-[100px] = the -top extension above. */}
-      <span className="lg:hidden absolute inset-x-0 top-[100px] h-28 bg-gradient-to-b from-[#0d1b45] to-transparent" />
       <DotGrid dotSize={3} gap={22} baseColor="#1e2a44" activeColor="#60a5fa" proximity={120} fade={0.6} />
       {/* {meteors.map((m, i) => (
         <span
