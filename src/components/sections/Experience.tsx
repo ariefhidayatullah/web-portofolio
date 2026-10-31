@@ -6,6 +6,7 @@ import Card from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { slideInLeft, staggerContainer } from "@/lib/utils";
+import { useLang, useT, formatMonth } from "@/lib/i18n";
 
 // Stable fake commit hash per entry, purely decorative.
 const shortHash = (id: string) =>
@@ -22,12 +23,14 @@ const typeVariant: Record<string, "dark" | "blue" | "zinc"> = {
 };
 
 export default function Experience() {
+  const lang = useLang();
+  const t = useT().experience;
   return (
     <section id="experience" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <SectionHeader
-          label="Experience"
-          title="My professional journey"
+          label={t.label}
+          title={t.title}
         />
 
         <motion.div
@@ -87,19 +90,19 @@ export default function Experience() {
                         {exp.type}
                       </Badge>
                       <span className="font-mono text-xs text-slate-500">
-                        {exp.startDate} – {exp.endDate}
+                        {formatMonth(exp.startDate, lang)} – {formatMonth(exp.endDate, lang)}
                       </span>
                     </div>
                   </div>
 
                   {/* Description */}
                   <p className="text-sm text-text-secondary mb-4 leading-relaxed">
-                    {exp.description}
+                    {t.items[exp.id].description}
                   </p>
 
                   {/* Responsibilities */}
                   <ul className="space-y-1.5 mb-4">
-                    {exp.responsibilities.map((resp, i) => (
+                    {t.items[exp.id].responsibilities.map((resp, i) => (
                       <li
                         key={i}
                         className="text-sm text-slate-300 pl-4 relative before:content-['+'] before:absolute before:left-0 before:font-mono before:text-emerald-400"

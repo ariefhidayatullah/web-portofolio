@@ -12,6 +12,7 @@ import Badge from "@/components/ui/Badge";
 import ProfileCard from "@/components/ui/ProfileCard";
 import TechText from "@/components/ui/TechText";
 import { fadeUpHero, slideInRight } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const socialLinks = [
   {
@@ -51,6 +52,7 @@ function LocalTime() {
 }
 
 export default function Hero() {
+  const t = useT().hero;
   return (
     <section
       id="home"
@@ -87,7 +89,7 @@ export default function Hero() {
           >
             <Badge variant="green" className="mb-8">
               <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" />
-              Available for freelance work
+              {t.available}
             </Badge>
           </motion.div>
 
@@ -98,9 +100,7 @@ export default function Hero() {
             animate="visible"
             custom={1}
           >
-            <p className="text-lg md:text-xl text-slate-400 mb-2">
-              Hi, I&apos;m
-            </p>
+            <p className="text-lg md:text-xl text-slate-400 mb-2">{t.hi}</p>
             {/* TechText canvas: follows cursor/touch, sweeps by itself when idle. The h1 below is for SEO/screen readers only. */}
             <div aria-hidden className="mb-4">
               {/* Height on the wrapper (TechText's own h-full wins over a className height).
@@ -159,12 +159,7 @@ export default function Hero() {
                 <p className="text-slate-500">
                   <span className="text-emerald-400">$</span> cat bio.txt
                 </p>
-                <p className="text-text-secondary">
-                  Full-stack developer with 3+ years building PHP-based web and
-                  mobile systems (Laravel, CodeIgniter). I now pair AI-assisted
-                  development with clean architecture to ship faster without
-                  sacrificing maintainability.
-                </p>
+                <p className="text-text-secondary">{t.bio}</p>
               </div>
               {/* Topics being learned, not claimed skills. Only this last prompt shows a cursor, like a real terminal. */}
               <div>
@@ -214,7 +209,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#2c67ed] to-[#3c84f6] shadow-[0_0_24px_rgba(44,103,237,0.4)] hover:shadow-[0_0_32px_rgba(44,103,237,0.6)] hover:-translate-y-0.5 transition-all"
             >
               <ArrowRight size={16} />
-              Hire Me
+              {t.hire}
             </a>
             {/* Hidden until public/resume.pdf exists. Also re-add ArrowDown to the lucide import.
             <a
@@ -235,7 +230,7 @@ export default function Hero() {
             className="flex items-center gap-4"
           >
             <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">
-              Follow me:
+              {t.follow}
             </span>
             {socialLinks.map((link) => (
               <a
@@ -267,8 +262,8 @@ export default function Hero() {
             name="Arief Hidayatullah"
             title="Full-Stack Developer"
             handle="ariefhidayatullah"
-            status="Available"
-            contactText="Contact"
+            status={t.status}
+            contactText={t.contact}
             backdropColor="#2c67ed"
             onContactClick={() => {
               window.location.href = "mailto:mohammadariefhidayatullah@gmail.com";

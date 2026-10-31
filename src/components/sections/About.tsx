@@ -5,12 +5,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Badge from "@/components/ui/Badge";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import { fadeUp, staggerContainer } from "@/lib/utils";
-
-const stats = [
-  { value: "3+", label: "Years of Experience" },
-  { value: "1", label: "Company" },
-  { value: "Open", label: "to Opportunities" },
-];
+import { useT } from "@/lib/i18n";
 
 const coreSkills = [
   "PHP",
@@ -23,10 +18,11 @@ const coreSkills = [
 ];
 
 export default function About() {
+  const t = useT().about;
   return (
     <section id="about" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <SectionHeader label="About Me" title="Getting to know me" />
+        <SectionHeader label={t.label} title={t.title} />
 
         <div className="max-w-3xl mx-auto">
 
@@ -39,21 +35,11 @@ export default function About() {
           >
             {/* Bio paragraphs */}
             <motion.div variants={fadeUp} className="space-y-4 mb-10">
-              <p className="text-text-secondary text-base md:text-lg leading-relaxed">
-                I&apos;m a full-stack developer in Malang, Indonesia. For 3+
-                years I&apos;ve been building and running production systems in
-                PHP — Laravel, CodeIgniter, MySQL, RabbitMQ — the kind with
-                large datasets, background workers, and users who notice the
-                second something breaks.
-              </p>
-              <p className="text-text-secondary text-base md:text-lg leading-relaxed">
-                These days I code with AI as my pair programmer. It makes me
-                faster, not careless: I still read the query plan, trace bugs to
-                their root cause, and make sure what ships is something the next
-                developer can maintain. Next, I&apos;m learning to build AI into
-                products themselves: RAG and AI agents. Usually with amapiano in
-                my headphones.
-              </p>
+              {t.paragraphs.map((text) => (
+                <p key={text} className="text-text-secondary text-base md:text-lg leading-relaxed">
+                  {text}
+                </p>
+              ))}
             </motion.div>
 
             {/* Stats row */}
@@ -61,10 +47,10 @@ export default function About() {
               variants={fadeUp}
               className="grid grid-cols-3 gap-4 mb-10"
             >
-              {stats.map((stat) => (
+              {t.stats.map((stat, i) => (
                 // Not ui/Card: its forced p-6! would override p-5 here.
                 <SpotlightCard
-                  key={stat.label}
+                  key={i}
                   spotlightColor="#60a5fa"
                   className="glass-card rounded-2xl! p-5! text-center"
                 >
@@ -81,7 +67,7 @@ export default function About() {
             {/* Core skills */}
             <motion.div variants={fadeUp}>
               <p className="text-sm font-medium text-text-secondary uppercase tracking-wider mb-3">
-                Core Skills
+                {t.coreSkills}
               </p>
               <div className="flex flex-wrap gap-2">
                 {coreSkills.map((skill) => (

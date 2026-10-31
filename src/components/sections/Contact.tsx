@@ -6,6 +6,7 @@ import { FaLinkedin, FaInstagram } from "react-icons/fa";
 import Card from "@/components/ui/Card";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { fadeUp, staggerContainer } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const contacts = [
   {
@@ -35,6 +36,7 @@ const contacts = [
 ];
 
 export default function Contact() {
+  const t = useT().contact;
   return (
     <section
       id="contact"
@@ -45,8 +47,8 @@ export default function Contact() {
           {/* Left: Heading */}
           <div className="lg:col-span-5">
             <SectionHeader
-              label="Contact"
-              title="Let's Work Together"
+              label={t.label}
+              title={t.title}
             />
             <motion.p
               variants={fadeUp}
@@ -55,8 +57,7 @@ export default function Contact() {
               viewport={{ once: true }}
               className="text-text-secondary text-base leading-relaxed"
             >
-              Have a project in mind or just want to say hi? My inbox is always
-              open.
+              {t.body}
             </motion.p>
           </div>
 

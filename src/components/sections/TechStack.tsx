@@ -20,6 +20,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Card from "@/components/ui/Card";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 import { type IconType } from "react-icons";
 
 // Not in react-icons; path from LobeHub Icons (MIT).
@@ -64,6 +65,7 @@ const iconColorMap: Record<string, string> = {
 };
 
 export default function TechStack() {
+  const t = useT().techStack;
   return (
     <section
       id="tech-stack"
@@ -71,8 +73,8 @@ export default function TechStack() {
     >
       <div className="max-w-6xl mx-auto">
         <SectionHeader
-          label="Tech Stack"
-          title="Tools & technologies I work with"
+          label={t.label}
+          title={t.title}
         />
 
         <motion.div

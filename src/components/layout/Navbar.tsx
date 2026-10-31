@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLang, useT, setLang } from "@/lib/i18n";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -19,6 +20,13 @@ export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isRecruiter, setIsRecruiter] = useState(false);
   const isClickingRef = useRef(false);
+  const lang = useLang();
+  const t = useT().nav;
+
+  // Keep <html lang> in sync, also when a saved "id" is restored on load.
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -120,7 +128,7 @@ export default function Navbar() {
                 )}
                 <span className="relative z-10">
                   <span className="font-mono text-xs opacity-60 mr-1.5">0{i + 1}</span>
-                  {link.label}
+                  {t.links[i]}
                 </span>
               </button>
             ))}
@@ -137,7 +145,18 @@ export default function Navbar() {
                 : "border-white/10 text-slate-400 hover:text-white"
             )}
           >
-            {isRecruiter ? "← full site" : "recruiter mode"}
+            {isRecruiter ? t.fullSite : t.recruiter}
+          </button>
+
+          {/* Language toggle: EN | ID, active one highlighted */}
+          <button
+            onClick={() => setLang(lang === "en" ? "id" : "en")}
+            aria-label={lang === "en" ? "Ganti ke Bahasa Indonesia" : "Switch to English"}
+            className="px-3 py-1.5 font-mono text-xs rounded-full border border-white/10 text-slate-500 hover:border-white/25 transition-colors"
+          >
+            <span className={lang === "en" ? "text-white" : ""}>EN</span>
+            <span className="mx-1 opacity-40">|</span>
+            <span className={lang === "id" ? "text-white" : ""}>ID</span>
           </button>
 
           {/* Mobile hamburger */}
@@ -181,7 +200,7 @@ export default function Navbar() {
                   )}
                 >
                   <span className="font-mono text-sm opacity-60 mr-3">0{i + 1}</span>
-                  {link.label}
+                  {t.links[i]}
                 </motion.button>
               ))}
             </div>

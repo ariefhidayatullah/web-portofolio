@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { FaYoutube, FaSpotify } from "react-icons/fa";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { fadeUp } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const YOUTUBE_PLAYLIST_ID = "PLeh_KVybxlmU";
 // Empty = Spotify tab shows the "under construction" terminal. Paste the id from
@@ -42,12 +43,13 @@ function SpotifyPending() {
 
 export default function Music() {
   const [tab, setTab] = useState<Tab>("youtube");
+  const t = useT().music;
 
   return (
     <section id="music" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-5">
-          <SectionHeader label="Music" title="Code runs on music." />
+          <SectionHeader label={t.label} title={t.title} />
           <motion.p
             variants={fadeUp}
             initial="hidden"
@@ -55,8 +57,7 @@ export default function Music() {
             viewport={{ once: true }}
             className="text-text-secondary text-base leading-relaxed text-center"
           >
-            Amapiano and Indonesian hits on repeat while I turn ideas into
-            working software. Here&apos;s what keeps the build green.
+            {t.body}
           </motion.p>
         </div>
 

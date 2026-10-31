@@ -1,8 +1,13 @@
+"use client";
+
 import { experiences } from "@/data/experience";
 import { techStack } from "@/data/techStack";
+import { useLang, useT, formatMonth } from "@/lib/i18n";
 
 // One-page CV shown instead of the full site when <html> has the "recruiter" class (toggled in Navbar).
 export default function RecruiterView() {
+  const lang = useLang();
+  const t = useT();
   return (
     <section className="recruiter-view px-4 sm:px-6 pt-28 pb-16">
       <div className="glass-card max-w-3xl mx-auto rounded-2xl p-6 sm:p-10 space-y-8">
@@ -37,16 +42,12 @@ export default function RecruiterView() {
         </header>
 
         <div>
-          <h2 className="font-mono text-xs uppercase tracking-widest text-slate-500 mb-3">Summary</h2>
-          <p className="text-text-secondary leading-relaxed">
-            Full-stack developer with 3+ years building PHP-based web and mobile systems (Laravel,
-            CodeIgniter). I now pair AI-assisted development with clean architecture to ship faster
-            without sacrificing maintainability.
-          </p>
+          <h2 className="font-mono text-xs uppercase tracking-widest text-slate-500 mb-3">{t.recruiter.summary}</h2>
+          <p className="text-text-secondary leading-relaxed">{t.hero.bio}</p>
         </div>
 
         <div>
-          <h2 className="font-mono text-xs uppercase tracking-widest text-slate-500 mb-3">Experience</h2>
+          <h2 className="font-mono text-xs uppercase tracking-widest text-slate-500 mb-3">{t.recruiter.experience}</h2>
           <div className="space-y-6">
             {experiences.map((exp) => (
               <div key={exp.id}>
@@ -55,11 +56,11 @@ export default function RecruiterView() {
                     {exp.title} <span className="text-text-secondary font-normal">· {exp.company}</span>
                   </p>
                   <p className="font-mono text-xs text-slate-500 shrink-0">
-                    {exp.startDate} – {exp.endDate}
+                    {formatMonth(exp.startDate, lang)} – {formatMonth(exp.endDate, lang)}
                   </p>
                 </div>
                 <ul className="mt-2 space-y-1 list-disc pl-5 text-sm text-slate-300">
-                  {exp.responsibilities.map((r) => (
+                  {t.experience.items[exp.id].responsibilities.map((r) => (
                     <li key={r}>{r}</li>
                   ))}
                 </ul>
@@ -69,7 +70,7 @@ export default function RecruiterView() {
         </div>
 
         <div>
-          <h2 className="font-mono text-xs uppercase tracking-widest text-slate-500 mb-3">Skills</h2>
+          <h2 className="font-mono text-xs uppercase tracking-widest text-slate-500 mb-3">{t.recruiter.skills}</h2>
           <dl className="space-y-1.5 text-sm">
             {techStack.map((cat) => (
               <div key={cat.title} className="flex gap-3">

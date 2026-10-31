@@ -4,10 +4,9 @@ export interface Experience {
   company: string;
   companyLogo?: string;
   type: "Full-time" | "Part-time" | "Internship" | "Freelance";
+  // "YYYY-MM"; endDate may be "Present". Description/responsibilities live in data/i18n.ts.
   startDate: string;
   endDate: string | "Present";
-  description: string;
-  responsibilities: string[];
   technologies: string[];
 }
 
@@ -17,16 +16,8 @@ export const experiences: Experience[] = [
     title: "Full Stack Developer",
     company: "Sekawan Media",
     type: "Full-time",
-    startDate: "Dec 2022",
+    startDate: "2022-12",
     endDate: "Present",
-    description:
-      "Building and maintaining production systems for enterprise clients: web dashboards, mobile app APIs, and the background workers between them.",
-    responsibilities: [
-      "Trace production bugs to their root cause across services, queues, and the database, then ship the fix and repair the affected data.",
-      "Turn slow pages and timeouts into fast ones by reading query plans and adding the right indexes.",
-      "Keep RabbitMQ background workers reliable, so jobs don't fail silently.",
-      "Upgraded three PHP codebases to PHP 8.4 and added JWT authentication to the mobile app API.",
-    ],
     technologies: ["PHP", "Laravel", "CodeIgniter", "MySQL", "RabbitMQ", "JavaScript"],
   },
   {
@@ -34,15 +25,8 @@ export const experiences: Experience[] = [
     title: "Junior Project Lead",
     company: "Sekawan Media",
     type: "Part-time",
-    startDate: "Aug 2023",
+    startDate: "2023-08",
     endDate: "Present",
-    description:
-      "Alongside development, I'm the bridge between clients and the dev team.",
-    responsibilities: [
-      "Work directly with clients to clarify requirements and report progress.",
-      "Turn client requests into clear, scoped tasks and split them across the team.",
-      "Keep delivery on track across concurrent projects.",
-    ],
     technologies: ["Client Communication", "Requirement Analysis", "Task Planning"],
   },
   {
@@ -50,15 +34,8 @@ export const experiences: Experience[] = [
     title: "Software Developer Intern",
     company: "Dinas Komunikasi dan Informatika Kabupaten Bondowoso",
     type: "Internship",
-    startDate: "Sep 2021",
-    endDate: "Feb 2022",
-    description:
-      "Contributed to the development of government digital services as part of a 6-month internship program.",
-    responsibilities: [
-      "Developed and maintained internal web applications to support local government digital services.",
-      "Collaborated with senior developers to implement new features based on stakeholder requirements.",
-      "Performed testing, bug fixing, and documentation for delivered features.",
-    ],
+    startDate: "2021-09",
+    endDate: "2022-02",
     technologies: ["PHP", "MySQL", "Bootstrap"],
   },
 ];
