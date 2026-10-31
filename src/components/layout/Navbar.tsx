@@ -114,7 +114,7 @@ export default function Navbar() {
                 {activeSection === link.href.slice(1) && (
                   <motion.span
                     layoutId="activePill"
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-[#2c67ed] to-[#3c84f6] shadow-[0_0_20px_rgba(44,103,237,0.45)]"
+                    className="absolute inset-0 rounded-full glass-pill"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                   />
                 )}

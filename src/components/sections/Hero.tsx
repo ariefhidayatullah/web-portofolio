@@ -179,9 +179,10 @@ export default function Hero() {
                   <span className="text-emerald-400">$</span> cat bio.txt
                 </p>
                 <p className="text-text-secondary">
-                  I build efficient, scalable, and well-structured web
-                  applications. With 3+ years of experience in web development,
-                  I bring clean code and thoughtful engineering to every project.
+                  Full-stack developer with 3+ years building PHP-based web and
+                  mobile systems (Laravel, CodeIgniter). I now pair AI-assisted
+                  development with clean architecture to ship faster without
+                  sacrificing maintainability.
                 </p>
               </div>
               {/* Topics being learned, not claimed skills. Only this last prompt shows a cursor, like a real terminal. */}

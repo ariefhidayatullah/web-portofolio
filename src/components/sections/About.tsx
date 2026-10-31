@@ -43,17 +43,19 @@ export default function About() {
             {/* Bio paragraphs */}
             <motion.div variants={fadeUp} className="space-y-4 mb-10">
               <p className="text-text-secondary text-base md:text-lg leading-relaxed">
-                I&apos;m Mohammad Arief Hidayatullah — a Full-Stack Developer
-                based in Malang, Indonesia, with a strong foundation in PHP and
-                Laravel. I enjoy building systems that are not only functional
-                but also maintainable and well-thought-out from the ground up.
+                I&apos;m a full-stack developer in Malang, Indonesia. For 3+
+                years I&apos;ve been building and running production systems in
+                PHP — Laravel, CodeIgniter, MySQL, RabbitMQ — the kind with
+                large datasets, background workers, and users who notice the
+                second something breaks.
               </p>
               <p className="text-text-secondary text-base md:text-lg leading-relaxed">
-                I&apos;m deeply interested in backend architecture and system
-                optimization, while actively expanding my skills in modern
-                JavaScript ecosystems. I thrive in collaborative environments
-                and believe good engineering is inseparable from good
-                communication.
+                These days I code with AI as my pair programmer. It makes me
+                faster, not careless: I still read the query plan, trace bugs to
+                their root cause, and make sure what ships is something the next
+                developer can maintain. Next, I&apos;m learning to build AI into
+                products themselves: RAG and AI agents. Usually with amapiano in
+                my headphones.
               </p>
             </motion.div>
 

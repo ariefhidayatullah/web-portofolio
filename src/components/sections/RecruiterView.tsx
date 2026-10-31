@@ -39,9 +39,9 @@ export default function RecruiterView() {
         <div>
           <h2 className="font-mono text-xs uppercase tracking-widest text-slate-500 mb-3">Summary</h2>
           <p className="text-text-secondary leading-relaxed">
-            I build efficient, scalable, and well-structured web applications. With 3+ years of
-            experience in web development, I bring clean code and thoughtful engineering to every
-            project.
+            Full-stack developer with 3+ years building PHP-based web and mobile systems (Laravel,
+            CodeIgniter). I now pair AI-assisted development with clean architecture to ship faster
+            without sacrificing maintainability.
           </p>
         </div>
 
