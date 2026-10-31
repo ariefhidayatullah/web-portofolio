@@ -47,7 +47,7 @@ export default function Experience() {
           />
 
           <div className="space-y-8">
-            {experiences.map((exp) => (
+            {experiences.map((exp, i) => (
               <motion.div
                 key={exp.id}
                 variants={slideInLeft}
@@ -66,7 +66,8 @@ export default function Experience() {
                   {/* git log style commit line */}
                   <p className="font-mono text-xs mb-2">
                     <span className="text-amber-400">commit {shortHash(exp.id)}</span>
-                    {exp.endDate === "Present" && (
+                    {/* Only one HEAD in git: the newest entry, even if several are "Present" */}
+                    {i === 0 && (
                       <span className="text-sky-400"> (HEAD -&gt; main)</span>
                     )}
                   </p>

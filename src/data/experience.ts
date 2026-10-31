@@ -13,6 +13,23 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    id: "sekawan-fullstack",
+    title: "Full Stack Developer",
+    company: "Sekawan Media",
+    type: "Full-time",
+    startDate: "Dec 2022",
+    endDate: "Present",
+    description:
+      "Building and maintaining production systems for enterprise clients: web dashboards, mobile app APIs, and the background workers between them.",
+    responsibilities: [
+      "Trace production bugs to their root cause across services, queues, and the database, then ship the fix and repair the affected data.",
+      "Turn slow pages and timeouts into fast ones by reading query plans and adding the right indexes.",
+      "Keep RabbitMQ background workers reliable, so jobs don't fail silently.",
+      "Upgraded three PHP codebases to PHP 8.4 and added JWT authentication to the mobile app API.",
+    ],
+    technologies: ["PHP", "Laravel", "CodeIgniter", "MySQL", "RabbitMQ", "JavaScript", "Docker"],
+  },
+  {
     id: "sekawan-lead",
     title: "Junior Project Lead",
     company: "Sekawan Media",
@@ -20,36 +37,13 @@ export const experiences: Experience[] = [
     startDate: "Aug 2023",
     endDate: "Present",
     description:
-      "Leading and coordinating development teams to deliver multiple projects with high quality and on-time delivery.",
+      "Alongside development, I'm the bridge between clients and the dev team.",
     responsibilities: [
-      "Lead and manage cross-functional development teams across multiple concurrent projects.",
-      "Coordinate sprint planning, task delegation, and code review processes to ensure delivery timelines are met.",
-      "Act as the primary liaison between technical teams and project stakeholders to align on requirements and progress.",
-      "Drive best practices in team collaboration, documentation, and development workflows.",
+      "Work directly with clients to clarify requirements and report progress.",
+      "Turn client requests into clear, scoped tasks and split them across the team.",
+      "Keep delivery on track across concurrent projects.",
     ],
-    technologies: [
-      "Team Leadership",
-      "Team Management",
-      "Agile",
-      "Project Management",
-    ],
-  },
-  {
-    id: "sekawan-fullstack",
-    title: "Full Stack Developer",
-    company: "Sekawan Media",
-    type: "Full-time",
-    startDate: "Dec 2022",
-    endDate: "Aug 2023",
-    description:
-      "Developed and maintained web-based systems across multiple client projects using PHP and Laravel.",
-    responsibilities: [
-      "Built and maintained robust backend systems using Laravel and PHP following MVC architecture.",
-      "Collaborated within agile development teams using GitLab for version control and CI/CD workflows.",
-      "Developed RESTful APIs and integrated third-party services to support business requirements.",
-      "Performed code reviews, debugging, and performance optimization across multiple project codebases.",
-    ],
-    technologies: ["PHP", "Laravel", "JavaScript", "MySQL", "GitLab", "Bootstrap"],
+    technologies: ["Client Communication", "Requirement Analysis", "Task Planning"],
   },
   {
     id: "diskominfo-intern",
