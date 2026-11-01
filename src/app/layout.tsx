@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import Background from "@/components/ui/Background";
+import BootScreen from "@/components/layout/BootScreen";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -57,11 +58,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // suppressHydrationWarning: BootScreen's inline script may add "booted" before hydration
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${display.variable} ${inter.variable} ${mono.variable} antialiased`}
     >
       <body>
+        <BootScreen />
         <Background />
         <div className="relative z-0">
           {children}
