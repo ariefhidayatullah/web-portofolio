@@ -114,16 +114,9 @@ main, section, nav, footer {
     0 4px 16px rgba(44, 103, 237, 0.35);
 }
 
-/* Music section: fake Spotify sync bar that never finishes (it's the joke) */
-.sync-bar { width: 48%; animation: sync-crawl 7s ease-in-out infinite alternate; }
-@keyframes sync-crawl { to { width: 74%; } }
-
 /* Recruiter mode: html.recruiter swaps the full site for the one-page CV */
 .recruiter-view { display: none; }
 html.recruiter .recruiter-view { display: block; }
 html.recruiter main,
 html.recruiter footer { display: none; }
 
-@media (prefers-reduced-motion: reduce) {
-  .sync-bar { animation: none; }
-}
