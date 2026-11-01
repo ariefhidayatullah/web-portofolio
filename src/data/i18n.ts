@@ -101,10 +101,19 @@ const en = {
     empty: "No comments yet. Be the first!",
     invalid: "Fill in your name and a comment (max 500 characters).",
     error: "Couldn't post your comment. Please try again.",
+    posted: "Comment posted. Thanks for stopping by!",
+  },
+  boot: {
+    label: "Booting portfolio…",
+    done: "Ready in",
+    steps: ["compiling ~/experience", "loading tech stack", "brewing coffee"],
   },
   footer: {
     builtWith: "Built with Next.js & Tailwind CSS",
     backToTop: "Back to Top",
+    // Footer easter egg: a button that dodges the cursor, then gives up
+    egg: ["don't click me", "nope", "too slow", "almost", "fine, you win"],
+    eggFound: "You found the easter egg 🥚",
   },
   recruiter: {
     summary: "Summary",
@@ -214,10 +223,18 @@ const id: Dict = {
     empty: "Belum ada komentar. Jadilah yang pertama!",
     invalid: "Isi nama dan komentar (maks. 500 karakter).",
     error: "Komentar gagal dikirim. Coba lagi ya.",
+    posted: "Komentar terkirim. Makasih sudah mampir!",
+  },
+  boot: {
+    label: "Menyiapkan portofolio…",
+    done: "Siap dalam",
+    steps: ["mengompilasi ~/pengalaman", "memuat tech stack", "menyeduh kopi"],
   },
   footer: {
     builtWith: "Dibuat dengan Next.js & Tailwind CSS",
     backToTop: "Kembali ke Atas",
+    egg: ["jangan klik aku", "nggak", "kelambatan", "dikit lagi", "oke, kamu menang"],
+    eggFound: "Kamu nemu easter egg 🥚",
   },
   recruiter: {
     summary: "Ringkasan",

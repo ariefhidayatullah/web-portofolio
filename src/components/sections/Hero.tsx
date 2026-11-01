@@ -204,7 +204,7 @@ export default function Hero() {
           >
             <a
               href="mailto:mohammadariefhidayatullah@gmail.com"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#2c67ed] to-[#3c84f6] shadow-[0_0_24px_rgba(44,103,237,0.4)] hover:shadow-[0_0_32px_rgba(44,103,237,0.6)] hover:-translate-y-0.5 transition-all"
+              className="glass-pill inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white hover:brightness-125 hover:-translate-y-0.5 transition-all"
             >
               <ArrowRight size={16} />
               {t.hire}

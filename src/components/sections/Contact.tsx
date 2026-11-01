@@ -10,6 +10,7 @@ import { fadeUp, staggerContainer, field } from "@/lib/utils";
 import { useT } from "@/lib/i18n";
 import { sendMessage } from "@/app/actions";
 import Guestbook from "@/components/sections/Guestbook";
+import SuccessToast from "@/components/ui/SuccessToast";
 
 const contacts = [
   {
@@ -135,22 +136,20 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={pending}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#2c67ed] hover:bg-[#3b74f0] disabled:opacity-60 px-6 py-3 text-sm font-semibold text-white transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 glass-pill rounded-full hover:brightness-125 disabled:opacity-60 px-6 py-3 text-sm font-semibold text-white transition-all"
                 >
                   <Send size={16} />
                   {pending ? t.form.sending : t.form.send}
                 </button>
-                {state.status !== "idle" && (
-                  <p
-                    role="status"
-                    className={`text-sm font-mono ${state.status === "sent" ? "text-emerald-400" : "text-amber-400"}`}
-                  >
-                    {state.status === "sent" ? "✓ " : "! "}
-                    {t.form[state.status]}
+                {/* Success shows as a toast; failures stay here so they can't be missed */}
+                {(state.status === "invalid" || state.status === "error") && (
+                  <p role="status" className="text-sm font-mono text-amber-400">
+                    ! {t.form[state.status]}
                   </p>
                 )}
               </form>
             </Card>
+            <SuccessToast trigger={state.status === "sent" ? state : null} title={t.form.sent} />
           </motion.div>
         </div>
 

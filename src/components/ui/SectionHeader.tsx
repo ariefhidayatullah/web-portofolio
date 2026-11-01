@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/utils";
+import DecryptedText from "@/components/ui/DecryptedText";
 
 interface SectionHeaderProps {
   label: string;
@@ -27,7 +28,8 @@ export default function SectionHeader({ label, title }: SectionHeaderProps) {
         className="font-bold font-heading leading-[1.05] tracking-tight text-text-primary"
         style={{ fontSize: "clamp(2.25rem, 5vw, 3.5rem)" }}
       >
-        {title}
+        {/* Decrypts left to right when the heading scrolls into view; letters near the cursor scramble on hover */}
+        <DecryptedText text={title} animateOn="inViewHover" hoverRadius={70} sequential speed={70} encryptedClassName="text-[#60a5fa]/70" />
       </h2>
     </motion.div>
   );

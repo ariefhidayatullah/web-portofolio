@@ -147,16 +147,14 @@ main, section, nav, footer {
   .rocket, .group:hover .rocket, .group .rocket.fly { animation: none; }
 }
 
-/* First-visit boot splash (BootScreen.tsx): type "npm run dev", show ready, then lift away like a curtain. ~3.2s total */
-.boot { animation: boot-out 0.6s cubic-bezier(0.76, 0, 0.24, 1) 2.6s forwards; }
+/* First-visit boot splash (BootSplash.tsx). JS adds .lift BOOT_REVEAL_MS after it mounts;
+   the 10s delay is only a fallback so the page is never stuck behind it if JS fails. */
+.boot { animation: boot-out 0.6s cubic-bezier(0.76, 0, 0.24, 1) 10s forwards; }
+/* Separate name so the lift starts fresh (only changing the delay would jump to the end) */
+.boot.lift { animation: boot-lift 0.6s cubic-bezier(0.76, 0, 0.24, 1) forwards; }
 html.booted .boot { display: none; }
-.boot-type { width: 0; border-right: 0.6em solid #94a3b8; animation: boot-type 1.9s steps(13, end) 0.2s forwards, boot-caret 0.5s step-end infinite; }
-.boot-ready { opacity: 0; animation: boot-in 0.15s ease-out 2.25s forwards; }
-/* 13 chars x 0.6em (JetBrains Mono advance; "ch" measured narrower) + 0.6em caret border */
-@keyframes boot-type { to { width: 8.4em; } }
-@keyframes boot-caret { 50% { border-color: transparent; } }
-@keyframes boot-in { to { opacity: 1; } }
 @keyframes boot-out { to { transform: translateY(-100%); visibility: hidden; } }
+@keyframes boot-lift { to { transform: translateY(-100%); visibility: hidden; } }
 @media (prefers-reduced-motion: reduce) {
   .boot { display: none; }
 }

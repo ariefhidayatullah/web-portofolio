@@ -7,6 +7,7 @@ import Card from "@/components/ui/Card";
 import { fadeUp, field } from "@/lib/utils";
 import { useLang, useT } from "@/lib/i18n";
 import { listComments, postComment, type Comment } from "@/app/actions";
+import SuccessToast from "@/components/ui/SuccessToast";
 
 // "3 hours ago" / "3 jam yang lalu"
 function ago(iso: string, lang: string) {
@@ -51,7 +52,7 @@ export default function Guestbook() {
           <button
             type="submit"
             disabled={pending}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2c67ed] hover:bg-[#3b74f0] disabled:opacity-60 px-5 py-3 text-sm font-semibold text-white transition-colors"
+            className="inline-flex items-center justify-center gap-2 glass-pill rounded-full hover:brightness-125 disabled:opacity-60 px-5 py-3 text-sm font-semibold text-white transition-all"
           >
             <Send size={16} />
             {pending ? t.posting : t.post}
@@ -81,6 +82,7 @@ export default function Guestbook() {
           ))}
         </ul>
       </Card>
+      <SuccessToast trigger={state.status === "posted" ? state : null} title={t.posted} />
     </motion.div>
   );
 }
