@@ -7,8 +7,6 @@ import { ArrowRight, MapPin, Clock } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import TextType from "@/components/ui/TextType";
 import Badge from "@/components/ui/Badge";
-// DitherVeil replaced by ProfileCard. Uncomment (and the block below) to bring it back.
-// import DitherVeil from "@/components/ui/DitherVeil";
 import ProfileCard from "@/components/ui/ProfileCard";
 import TechText from "@/components/ui/TechText";
 import { fadeUpHero, slideInRight } from "@/lib/utils";
@@ -61,7 +59,7 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left: Text Content */}
         <div>
-          {/* Mobile photo: DitherVeil on the right is desktop only.
+          {/* Mobile photo: ProfileCard on the right is desktop only.
               Default lazy loading, so desktop (display:none) never fetches it. */}
           <motion.div
             variants={fadeUpHero}
@@ -269,13 +267,6 @@ export default function Hero() {
               window.location.href = "mailto:mohammadariefhidayatullah@gmail.com";
             }}
           />
-          {/* <DitherVeil
-            src="/avatar-nobg.png"
-            inkColor="#050510"
-            paperColor="#60a5fa"
-            revealRadius={160}
-            className="relative aspect-[914/1280] w-full"
-          /> */}
         </motion.div>
       </div>
 

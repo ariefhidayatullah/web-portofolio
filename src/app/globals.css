@@ -114,53 +114,9 @@ main, section, nav, footer {
     0 4px 16px rgba(44, 103, 237, 0.35);
 }
 
-/* Background: meteors + ambient orbs */
-.meteor {
-  position: absolute;
-  width: 150px;
-  height: 2px;
-  border-radius: 999px;
-  opacity: 0;
-  transform-origin: 0;
-  background: linear-gradient(90deg, transparent, rgba(115, 176, 255, 0.12) 35%, rgba(195, 224, 255, 0.95));
-  box-shadow: 0 0 8px rgba(100, 164, 255, 0.45);
-  animation: meteor-fall var(--duration) linear var(--delay) infinite;
-}
-
-@keyframes meteor-fall {
-  0% { opacity: 0; transform: translate(0, 0) rotate(45deg); }
-  2% { opacity: 0.9; }
-  8% { opacity: 0.75; }
-  12%, 100% { opacity: 0; transform: translate(75vw, 75vw) rotate(45deg); }
-}
-
 /* Music section: fake Spotify sync bar that never finishes (it's the joke) */
 .sync-bar { width: 48%; animation: sync-crawl 7s ease-in-out infinite alternate; }
 @keyframes sync-crawl { to { width: 74%; } }
-
-/* Portrait orbit rings (hero) */
-.orbit {
-  position: absolute;
-  border-radius: 999px;
-  border: 1px solid rgba(96, 165, 250, 0.25);
-  animation: spin 24s linear infinite;
-}
-
-.orbit::after {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #60a5fa;
-  box-shadow: 0 0 12px #60a5fa;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
 
 /* Recruiter mode: html.recruiter swaps the full site for the one-page CV */
 .recruiter-view { display: none; }
@@ -169,5 +125,5 @@ html.recruiter main,
 html.recruiter footer { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .meteor, .orbit, .sync-bar { animation: none; }
+  .sync-bar { animation: none; }
 }

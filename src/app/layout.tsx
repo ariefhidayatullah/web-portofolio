@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
-import MeteorBackground from "@/components/ui/MeteorBackground";
+import Background from "@/components/ui/Background";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -62,7 +62,7 @@ export default function RootLayout({
       className={`${display.variable} ${inter.variable} ${mono.variable} antialiased`}
     >
       <body>
-        <MeteorBackground />
+        <Background />
         <div className="relative z-0">
           {children}
         </div>
