@@ -3,6 +3,9 @@
 // session it marks <html> as booted, so the splash never flashes again.
 const once = `try{sessionStorage.getItem("booted")?document.documentElement.classList.add("booted"):sessionStorage.setItem("booted","1")}catch(e){}`;
 
+// When the curtain starts lifting; keep in sync with the .boot delay in globals.css.
+export const BOOT_REVEAL_MS = 2600;
+
 export default function BootScreen() {
   return (
     <>

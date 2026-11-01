@@ -112,6 +112,8 @@ interface DotGridProps {
   fade?: number;
   opacity?: number;
   intro?: boolean;
+  /** ms to hold the intro (dots hidden) before it starts, e.g. while a splash covers the page */
+  introDelay?: number;
   mouseInteraction?: boolean;
   clickShock?: boolean;
   paused?: boolean;
@@ -170,6 +172,7 @@ const DotGrid = ({
   fade = 0,
   opacity = 1,
   intro = true,
+  introDelay = 0,
   mouseInteraction = true,
   clickShock = true,
   paused = false,
@@ -198,6 +201,7 @@ const DotGrid = ({
     fade,
     opacity,
     intro,
+    introDelay,
     mouseInteraction,
     clickShock,
     paused,
@@ -534,7 +538,7 @@ const DotGrid = ({
     const frame = (now: number) => {
       raf = 0;
       if (settingsRef.current.paused || !visible) return;
-      if (introStart !== null && introStart < 0) introStart = now;
+      if (introStart !== null && introStart < 0) introStart = now + settingsRef.current.introDelay;
       const dt = Math.min(0.05, (now - last) / 1000 || 0);
       last = now;
       step(dt, now);
