@@ -25,22 +25,28 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  // Base for absolute URLs in link previews (og:image).
+  metadataBase: new URL("https://arief-hidayatullah.vercel.app"),
   title: "Mohammad Arief Hidayatullah — Full-Stack Developer",
+  // Shown in Google results and link previews (WhatsApp, LinkedIn); keep under ~160 chars.
   description:
-    "Full-Stack Developer specialized in building scalable web applications using PHP, Laravel, and modern JavaScript frameworks. Based in Malang, Indonesia.",
+    "Full-stack developer in Malang, Indonesia. 3+ years building production PHP systems with Laravel, CodeIgniter, MySQL, and RabbitMQ, now coding with AI.",
   keywords: [
     "Full-Stack Developer",
-    "Laravel",
     "PHP",
-    "Next.js",
-    "JavaScript",
+    "Laravel",
+    "CodeIgniter",
+    "MySQL",
+    "RabbitMQ",
+    "Freelance",
     "Malang",
+    "Indonesia",
   ],
   authors: [{ name: "Mohammad Arief Hidayatullah" }],
   openGraph: {
     title: "Mohammad Arief Hidayatullah — Full-Stack Developer",
     description:
-      "Full-Stack Developer specialized in building scalable web applications.",
+      "Full-stack developer in Malang, Indonesia. 3+ years building production PHP systems with Laravel, CodeIgniter, MySQL, and RabbitMQ, now coding with AI.",
     type: "website",
   },
 };
