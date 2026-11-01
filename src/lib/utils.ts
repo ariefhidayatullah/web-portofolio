@@ -69,3 +69,7 @@ export const slideInLeft: Variants = {
 export function cn(...classes: (string | undefined | null | false)[]): string {
   return classes.filter(Boolean).join(" ");
 }
+
+// Shared text input / textarea style (contact form, guestbook)
+export const field =
+  "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-text-primary placeholder:text-slate-500 focus:outline-none focus:border-[#60a5fa]/60 transition-colors";

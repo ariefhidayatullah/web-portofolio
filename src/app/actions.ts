@@ -43,3 +43,53 @@ export async function sendMessage(_prev: SendState, form: FormData): Promise<Sen
   }
   return { status: "sent" };
 }
+
+export type Comment = { id: number; name: string; message: string; created_at: string };
+export type PostState = {
+  status: "idle" | "posted" | "invalid" | "error";
+  comments?: Comment[];
+  values?: { name: string; message: string };
+};
+
+// Guestbook lives in Supabase table `guestbook`. RLS is on with no policies, so only
+// this server (secret key) can read or write it; the owner deletes rows from the dashboard.
+// Network errors and missing env come back as a 503 Response, so callers handle one failure path.
+async function db(path: string, init?: RequestInit) {
+  const { SUPABASE_URL: url, SUPABASE_SECRET_KEY: key } = process.env;
+  if (!url || !key) return new Response("SUPABASE_URL / SUPABASE_SECRET_KEY not set", { status: 503 });
+  try {
+    return await fetch(`${url}/rest/v1/${path}`, {
+      ...init,
+      headers: { apikey: key, "Content-Type": "application/json", ...init?.headers },
+      cache: "no-store",
+    });
+  } catch (e) {
+    return new Response(String(e), { status: 503 });
+  }
+}
+
+export async function listComments(): Promise<Comment[] | null> {
+  const res = await db("guestbook?select=id,name,message,created_at&order=created_at.desc&limit=50");
+  if (!res.ok) {
+    console.error("listComments: Supabase", res.status, await res.text());
+    return null;
+  }
+  return res.json();
+}
+
+export async function postComment(_prev: PostState, form: FormData): Promise<PostState> {
+  if (form.get("website")) return { status: "posted" };
+
+  const name = String(form.get("name") ?? "").trim();
+  const message = String(form.get("message") ?? "").trim();
+  if (!name || name.length > 50 || !message || message.length > 500)
+    return { status: "invalid", values: { name, message } };
+
+  // ponytail: no rate limit, comments publish instantly; add Turnstile if spam shows up.
+  const res = await db("guestbook", { method: "POST", body: JSON.stringify({ name, message }) });
+  if (!res.ok) {
+    console.error("postComment: Supabase", res.status, await res.text());
+    return { status: "error", values: { name, message } };
+  }
+  return { status: "posted", comments: (await listComments()) ?? undefined };
+}

@@ -6,12 +6,10 @@ import { Mail, Send } from "lucide-react";
 import { FaLinkedin, FaInstagram } from "react-icons/fa";
 import Card from "@/components/ui/Card";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { fadeUp, staggerContainer } from "@/lib/utils";
+import { fadeUp, staggerContainer, field } from "@/lib/utils";
 import { useT } from "@/lib/i18n";
 import { sendMessage } from "@/app/actions";
-
-const field =
-  "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-text-primary placeholder:text-slate-500 focus:outline-none focus:border-[#60a5fa]/60 transition-colors";
+import Guestbook from "@/components/sections/Guestbook";
 
 const contacts = [
   {
@@ -49,13 +47,14 @@ export default function Contact() {
       className="py-20 md:py-28 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left: Heading */}
-          <div className="lg:col-span-5">
-            <SectionHeader
-              label={t.label}
-              title={t.title}
-            />
+        <SectionHeader
+          label={t.label}
+          title={t.title}
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+          {/* Left: intro + direct channels */}
+          <div className="lg:col-span-5 flex flex-col">
             <motion.p
               variants={fadeUp}
               initial="hidden"
@@ -72,10 +71,10 @@ export default function Contact() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
-              className="mt-8 space-y-4"
+              className="mt-6 flex-1 flex flex-col gap-4"
             >
               {contacts.map((contact) => (
-                <motion.div key={contact.label} variants={fadeUp}>
+                <motion.div key={contact.label} variants={fadeUp} className="flex-1">
                   <a
                     href={contact.href}
                     target={
@@ -86,9 +85,9 @@ export default function Contact() {
                         ? undefined
                         : "noopener noreferrer"
                     }
-                    className="block"
+                    className="block h-full"
                   >
-                    <Card className="flex items-center gap-4">
+                    <Card className="h-full flex items-center gap-4">
                       <div
                         className={`w-12 h-12 rounded-xl ${contact.iconBg} flex items-center justify-center shrink-0`}
                       >
@@ -117,7 +116,7 @@ export default function Contact() {
             viewport={{ once: true, margin: "-50px" }}
             className="lg:col-span-7"
           >
-            <Card hover={false}>
+            <Card hover={false} className="h-full">
               <form action={action} className="space-y-4">
                 {/* Honeypot: hidden from people, bots fill it */}
                 <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
@@ -154,6 +153,8 @@ export default function Contact() {
             </Card>
           </motion.div>
         </div>
+
+        <Guestbook />
       </div>
     </section>
   );
