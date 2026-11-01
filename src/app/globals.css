@@ -114,6 +114,39 @@ main, section, nav, footer {
     0 4px 16px rgba(44, 103, 237, 0.35);
 }
 
+/* Footer "back to top": arrow rumbles like an engine on hover, flies off on click */
+.rocket { position: relative; display: inline-flex; }
+.rocket::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 4px;
+  height: 0;
+  margin-left: -2px;
+  border-radius: 999px;
+  background: linear-gradient(#fbbf24, #f97316 60%, transparent);
+  transition: height 0.2s;
+}
+.group:hover .rocket { animation: rocket-rumble 0.12s linear infinite; }
+.group:hover .rocket::after, .group .rocket.fly::after { height: 8px; }
+/* .group prefix: must outrank the hover rumble, since the cursor is still over the button on click */
+.group .rocket.fly { animation: rocket-fly 0.9s ease-in; }
+@keyframes rocket-rumble {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-0.5px, 0.5px); }
+  75% { transform: translate(0.5px, -0.5px); }
+}
+@keyframes rocket-fly {
+  0% { transform: translateY(0); opacity: 1; }
+  45% { transform: translateY(-48px); opacity: 0; }
+  46% { transform: translateY(14px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rocket, .group:hover .rocket, .group .rocket.fly { animation: none; }
+}
+
 /* Recruiter mode: html.recruiter swaps the full site for the one-page CV */
 .recruiter-view { display: none; }
 html.recruiter .recruiter-view { display: block; }
