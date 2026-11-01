@@ -27,7 +27,7 @@ const en = {
     stats: [
       { value: "3+", label: "Years of Experience" },
       { value: "1", label: "Company" },
-      { value: "Open", label: "to Opportunities" },
+      { value: "Open", label: "for Freelance Work" },
     ],
     coreSkills: "Core Skills",
   },
@@ -117,7 +117,7 @@ const id: Dict = {
     stats: [
       { value: "3+", label: "Tahun Pengalaman" },
       { value: "1", label: "Perusahaan" },
-      { value: "Terbuka", label: "untuk Peluang Baru" },
+      { value: "Siap", label: "untuk Proyek Freelance" },
     ],
     coreSkills: "Keahlian Utama",
   },
