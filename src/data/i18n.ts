@@ -39,6 +39,7 @@ const en = {
     label: "Experience",
     title: "My professional journey",
     present: "Present",
+    highlights: "highlights",
     items: {
       "sekawan-fullstack": {
         description:
@@ -129,6 +130,7 @@ const id: Dict = {
     label: "Pengalaman",
     title: "Perjalanan karier saya",
     present: "Sekarang",
+    highlights: "poin utama",
     items: {
       "sekawan-fullstack": {
         description:

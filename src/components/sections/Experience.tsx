@@ -100,17 +100,23 @@ export default function Experience() {
                     {t.items[exp.id].description}
                   </p>
 
-                  {/* Responsibilities */}
-                  <ul className="space-y-1.5 mb-4">
-                    {t.items[exp.id].responsibilities.map((resp, i) => (
-                      <li
-                        key={i}
-                        className="text-sm text-slate-300 pl-4 relative before:content-['+'] before:absolute before:left-0 before:font-mono before:text-emerald-400"
-                      >
-                        {resp}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Responsibilities, folded so the timeline stays scannable */}
+                  <details className="group mb-4">
+                    <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden font-mono text-xs text-emerald-400 hover:text-emerald-300 select-none">
+                      <span className="inline-block transition-transform group-open:rotate-90">▸</span>{" "}
+                      {t.items[exp.id].responsibilities.length} {t.highlights}
+                    </summary>
+                    <ul className="space-y-1.5 mt-3">
+                      {t.items[exp.id].responsibilities.map((resp, i) => (
+                        <li
+                          key={i}
+                          className="text-sm text-slate-300 pl-4 relative before:content-['+'] before:absolute before:left-0 before:font-mono before:text-emerald-400"
+                        >
+                          {resp}
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
 
                   {/* Tech badges */}
                   <div className="flex flex-wrap gap-1.5">
