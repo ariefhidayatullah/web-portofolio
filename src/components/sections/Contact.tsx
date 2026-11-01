@@ -1,12 +1,17 @@
 "use client";
 
+import { useActionState } from "react";
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { Mail, Send } from "lucide-react";
 import { FaLinkedin, FaInstagram } from "react-icons/fa";
 import Card from "@/components/ui/Card";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { fadeUp, staggerContainer } from "@/lib/utils";
 import { useT } from "@/lib/i18n";
+import { sendMessage } from "@/app/actions";
+
+const field =
+  "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-text-primary placeholder:text-slate-500 focus:outline-none focus:border-[#60a5fa]/60 transition-colors";
 
 const contacts = [
   {
@@ -37,6 +42,7 @@ const contacts = [
 
 export default function Contact() {
   const t = useT().contact;
+  const [state, action, pending] = useActionState(sendMessage, { status: "idle" });
   return (
     <section
       id="contact"
@@ -59,48 +65,93 @@ export default function Contact() {
             >
               {t.body}
             </motion.p>
+
+            {/* Direct channels */}
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              className="mt-8 space-y-4"
+            >
+              {contacts.map((contact) => (
+                <motion.div key={contact.label} variants={fadeUp}>
+                  <a
+                    href={contact.href}
+                    target={
+                      contact.href.startsWith("mailto:") ? undefined : "_blank"
+                    }
+                    rel={
+                      contact.href.startsWith("mailto:")
+                        ? undefined
+                        : "noopener noreferrer"
+                    }
+                    className="block"
+                  >
+                    <Card className="flex items-center gap-4">
+                      <div
+                        className={`w-12 h-12 rounded-xl ${contact.iconBg} flex items-center justify-center shrink-0`}
+                      >
+                        <contact.icon size={20} className={contact.iconColor} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-text-primary">
+                          {contact.label}
+                        </p>
+                        <p className="text-sm text-text-secondary truncate">
+                          {contact.value}
+                        </p>
+                      </div>
+                    </Card>
+                  </a>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Right: Cards */}
+          {/* Right: Form */}
           <motion.div
-            variants={staggerContainer}
+            variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            className="lg:col-span-7 space-y-4"
+            className="lg:col-span-7"
           >
-            {contacts.map((contact) => (
-              <motion.div key={contact.label} variants={fadeUp}>
-                <a
-                  href={contact.href}
-                  target={
-                    contact.href.startsWith("mailto:") ? undefined : "_blank"
-                  }
-                  rel={
-                    contact.href.startsWith("mailto:")
-                      ? undefined
-                      : "noopener noreferrer"
-                  }
-                  className="block"
+            <Card hover={false}>
+              <form action={action} className="space-y-4">
+                {/* Honeypot: hidden from people, bots fill it */}
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
+                <label className="block">
+                  <span className="block text-xs font-mono text-slate-400 mb-1.5">{t.form.name}</span>
+                  <input name="name" defaultValue={state.values?.name} required maxLength={100} autoComplete="name" className={field} />
+                </label>
+                <label className="block">
+                  <span className="block text-xs font-mono text-slate-400 mb-1.5">{t.form.email}</span>
+                  <input name="email" type="email" defaultValue={state.values?.email} required maxLength={200} autoComplete="email" className={field} />
+                </label>
+                <label className="block">
+                  <span className="block text-xs font-mono text-slate-400 mb-1.5">{t.form.message}</span>
+                  <textarea name="message" defaultValue={state.values?.message} required maxLength={5000} rows={6} className={`${field} resize-y`} />
+                </label>
+                <button
+                  type="submit"
+                  disabled={pending}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#2c67ed] hover:bg-[#3b74f0] disabled:opacity-60 px-6 py-3 text-sm font-semibold text-white transition-colors"
                 >
-                  <Card className="flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl ${contact.iconBg} flex items-center justify-center shrink-0`}
-                    >
-                      <contact.icon size={20} className={contact.iconColor} />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-sm font-medium text-text-primary">
-                        {contact.label}
-                      </p>
-                      <p className="text-sm text-text-secondary truncate">
-                        {contact.value}
-                      </p>
-                    </div>
-                  </Card>
-                </a>
-              </motion.div>
-            ))}
+                  <Send size={16} />
+                  {pending ? t.form.sending : t.form.send}
+                </button>
+                {state.status !== "idle" && (
+                  <p
+                    role="status"
+                    className={`text-sm font-mono ${state.status === "sent" ? "text-emerald-400" : "text-amber-400"}`}
+                  >
+                    {state.status === "sent" ? "✓ " : "! "}
+                    {t.form[state.status]}
+                  </p>
+                )}
+              </form>
+            </Card>
           </motion.div>
         </div>
       </div>

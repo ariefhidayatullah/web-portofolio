@@ -79,6 +79,16 @@ const en = {
     label: "Contact",
     title: "Let's Work Together",
     body: "Have a project in mind or just want to say hi? My inbox is always open.",
+    form: {
+      name: "Name",
+      email: "Email",
+      message: "Message",
+      send: "Send Message",
+      sending: "Sending...",
+      sent: "Message sent. I'll reply to your email soon.",
+      invalid: "Please fill in your name, a valid email, and a message.",
+      error: "Couldn't send right now. Please email me directly.",
+    },
   },
   footer: {
     builtWith: "Built with Next.js & Tailwind CSS",
@@ -170,6 +180,16 @@ const id: Dict = {
     label: "Kontak",
     title: "Ayo Kerja Bareng",
     body: "Punya ide project atau sekadar mau menyapa? Inbox saya selalu terbuka.",
+    form: {
+      name: "Nama",
+      email: "Email",
+      message: "Pesan",
+      send: "Kirim Pesan",
+      sending: "Mengirim...",
+      sent: "Pesan terkirim. Saya akan membalas ke email kamu.",
+      invalid: "Isi nama, email yang valid, dan pesan dulu ya.",
+      error: "Pesan gagal terkirim. Silakan email saya langsung.",
+    },
   },
   footer: {
     builtWith: "Dibuat dengan Next.js & Tailwind CSS",
